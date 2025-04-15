@@ -292,9 +292,8 @@
         /* Monad Icon Styles */
 .monad-icon-container {
     position: fixed;
-    top: 50%;
+    top: 20px;
     left: 20px; /* Adjust as needed for spacing from the left */
-    transform: translateY(-50%);
     z-index: 1000; /* Ensure it's on top of other elements */
     cursor: pointer; /* Optional: Add a cursor to indicate it's interactive */
 }
@@ -305,7 +304,6 @@
     border: 2px solid black;
     border-radius: 50%;
     position: relative;
-    animation: spin-ring 2s linear infinite; /* Animation on the circle */
 }
 
 .monad-dot {
@@ -320,16 +318,6 @@
     z-index: 2; /* Ensure the dot is on top */
 }
 
-/* We no longer need the monad-orbit and monad-orbiter */
-
-@keyframes spin-ring {
-    0% {
-        transform: rotateY(0deg);
-    }
-    100% {
-        transform: rotateY(-360deg); /* Right-to-left spin */
-    }
-}
     </style>
 </head>
 <body>
@@ -337,7 +325,6 @@
         <div class="monad-circle">
             <div class="monad-dot"></div>
             <div class="monad-orbit">
-                <div class="monad-orbiter"></div>
             </div>
         </div>
     </div>
@@ -353,7 +340,6 @@
                 <li><a href="#events">Events</a></li>
                 <li><a href="#projects">Projects</a></li>
                 <li><a href="#about">About</a></li>
-                <li><a href="#who">Who</a></li>
                 <li><a href="#contribute">Contribute</a></li>
                 <li><a href="#cite">How to Cite</a></li>
                 <li><a href="#contact">Contact</a></li>
@@ -514,11 +500,10 @@
     </section>
 
     <section id="who">
-        <h2>Hi, I'm Paul</h2>
         <div class="founder">
             <div class="founder-content">
                 <h3>Paul Stuart Bloch</h3>
-                <p>Paul first conceived of Kosmographica in 2002 and started two decades of research into comparative religion, human history, evolutionary developmental modesls, and information visualization. His work bridges the gap between traditional academic scholarship, faith-based religious contexts, and emerging technological frameworks for understanding human consciousness and cultural transmission.</p>
+                <p>Paul first conceived of Kosmographica in 2002 and started two decades of research into comparative religion, human history, evolutionary developmental models, and information visualization. His work bridges the gap between traditional academic scholarship, faith-based religious contexts, and emerging technological frameworks for understanding human consciousness and cultural transmission.</p>
                 <p>Paul has been a lifelong student of religious studies, emerging technologies, design, and systems thinking. Bloch has dedicated his career to design, art, and preserving (and contextualizing) wisdom traditions while exploring how they might evolve in response to technological advancement and social change. His approach combines rigorous historical research with innovative data visualization techniques, creating new pathways for understanding the interconnected nature of human knowledge.</p>
                 <p>Prior to officially establishing Kosmographica.com in 2025 and Panentheon.com in 2024, Bloch spent ten years studying and documenting Zen lineages throughout East Asia. Paul was ordained as a Zen monk and received his vows at Toshoji Temple in Oda-gun, Japan. Additionally over the past two decades Paul has been developing a methodology for analyzing prophetic literature across religious traditions. His multi-volume Kosmographica Series incorporates his approach and results from temporal mapping cultural and religious interconnections.</p>
             </div>
