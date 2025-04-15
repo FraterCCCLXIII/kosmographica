@@ -17,25 +17,66 @@
             color: #333;
             background-color: #fff;
             padding: 2rem;
-            max-width: 1200px;
+        }
+
+        .content-wrapper {
+            max-width: 800px;
             margin: 0 auto;
         }
 
         header {
-            margin-bottom: 10rem;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background-color: white;
+            padding: 1rem 2rem;
+            transition: all 0.3s ease;
+            /* border-bottom: 1px solid #eee; - removed */
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .site-title {
             text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: normal;
+            letter-spacing: 0.05rem;
+            margin-bottom: 0.2rem;
+            transition: all 0.3s ease;
+            font-family: "Times New Roman", Times, serif;
+        }
+
+        .tagline {
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            opacity: 1;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-weight: normal;
         }
 
         h1 {
-            font-size: 3.5rem;
-            font-weight: normal;
-            letter-spacing: 0rem;
+            font-size: 2.5rem;
             margin-bottom: 1rem;
+            letter-spacing: 0rem;
         }
 
         h2 {
             font-size: 2rem;
-            font-weight: normal;
             margin-bottom: 2rem;
             letter-spacing: 0rem;
             border-bottom: 1px solid #ddd;
@@ -44,9 +85,16 @@
 
         h3 {
             font-size: 1.5rem;
-            font-weight: normal;
             margin-bottom: 1rem;
             letter-spacing: 0rem;
+        }
+
+        h3 a {
+            color: black;
+        }
+
+        h3 a:hover {
+            border-bottom: 1px solid black;    
         }
 
         p {
@@ -56,6 +104,11 @@
 
         section {
             margin-bottom: 8rem;
+        }
+
+        .main-content {
+            margin-top: 8rem; /* Space for fixed header + subnav */
+            padding-top: 2rem;
         }
 
         .event {
@@ -112,7 +165,7 @@
         }
 
         a:hover {
-            border-bottom: 1px solid #000;
+            border-bottom: 1px solid blue;
         }
 
         .support-links {
@@ -224,8 +277,8 @@
                 padding: 1rem;
             }
 
-            h1 {
-                font-size: 2.5rem;
+            .logo {
+                font-size: 1.5rem;
             }
 
             .about-columns, .event, .project, .founder {
@@ -239,368 +292,473 @@
             }
         }
 
-        #menu-toggle {
-            display: none;
+        /* Monad Icon Styles */
+        .monad-icon-container {
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 1001;
+            cursor: pointer;
+            transition: all 0.3s ease;
         }
 
-        .nav-toggle {
-            display: none;
-        }
-
-        nav ul {
-            font-size: 16px;
-            list-style: none;
+        .monad-circle {
+            width: 40px;
+            height: 40px;
+            border: 2px solid black;
+            border-radius: 50%;
+            position: relative;
             display: flex;
             justify-content: center;
-            gap: 2rem;
-            margin-top: 2rem;
+            align-items: center;
         }
 
-        nav a {
-            text-transform: uppercase;
-            letter-spacing: 0.1rem;
-            font-size: 0.9rem;
+        .monad-dot {
+            width: 8px;
+            height: 8px;
+            background-color: black;
+            border-radius: 50%;
+        }
+
+        /* Navigation Drawer Styles */
+        .nav-drawer {
+            position: fixed;
+            top: 0;
+            left: -300px;
+            width: 300px;
+            height: 100vh;
+            background-color: white;
+            z-index: 2000;
+            box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+            transition: left 0.3s ease;
+            padding: 2rem;
+            overflow-y: auto;
+        }
+
+        .nav-drawer.open {
+            left: 0;
+        }
+
+        .close-nav {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            font-size: 1.5rem;
+            cursor: pointer;
+            border: none;
+            background: none;
+            padding: 0.5rem;
+        }
+
+        .drawer-menu {
+            margin-top: 3rem;
+            list-style: none;
+        }
+
+        .drawer-menu li {
+            margin-bottom: 1.5rem;
+        }
+
+        .drawer-menu a {
+            font-size: 1.2rem;
+            color: black;
+            display: block;
+            padding: 0.25rem 0;
+            text-decoration: none;
+        }
+
+        .drawer-menu a:hover {
+            color: blue;
+            text-decoration: underline;
             border-bottom: none;
         }
 
-        nav a:hover {
-            border-bottom: 1px solid #000;
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 1999;
+            display: none;
+            opacity: 0;
+            transition: opacity 0.3s ease;
         }
 
-        @media (max-width: 768px) {
-            .nav-toggle {
-                display: block;
-                text-align: center;
-                margin: 1rem 0;
-                cursor: pointer;
-            }
-
-            nav ul {
-                flex-direction: column;
-                gap: 1rem;
-                text-align: center;
-                max-height: 0;
-                overflow: hidden;
-                transition: max-height 0.3s ease;
-            }
-
-            #menu-toggle:checked ~ ul {
-                max-height: 400px;
-            }
+        .overlay.open {
+            display: block;
+            opacity: 1;
         }
 
-        /* Monad Icon Styles */
-.monad-icon-container {
-    position: fixed;
-    top: 20px;
-    left: 20px; /* Adjust as needed for spacing from the left */
-    z-index: 1000; /* Ensure it's on top of other elements */
-    cursor: pointer; /* Optional: Add a cursor to indicate it's interactive */
-}
+        /* Small header when scrolled */
+        header.scrolled .logo {
+            font-size: 1.5rem;
+        }
 
-.monad-circle {
-    width: 40px;
-    height: 40px;
-    border: 2px solid black;
-    border-radius: 50%;
-    position: relative;
-}
+        header.scrolled .tagline {
+            opacity: 0;
+            height: 0;
+            margin: 0;
+        }
 
-.monad-dot {
-    width: 8px;
-    height: 8px;
-    background-color: black;
-    border-radius: 50%;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    z-index: 2; /* Ensure the dot is on top */
-}
+        /* Sub Navigation */
+        .subnav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background-color: white;
+            /* border-bottom: 1px solid #eee; - removed */
+            padding: 0.5rem 2rem;
+            z-index: 999;
+            transform: translateY(-100%);
+            transition: transform 0.3s ease, top 0.3s ease;
+        }
 
+        .subnav.visible {
+            transform: translateY(0);
+        }
+
+        .subnav ul {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            gap: 1.5rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .subnav li a {
+            color: #333;
+            font-size: 0.9rem;
+            text-decoration: none;
+            letter-spacing: 0.05rem;
+        }
+
+        .subnav li a:hover {
+            color: blue;
+            text-decoration: underline;
+            border-bottom: none;
+        }
     </style>
 </head>
 <body>
-        <div class="monad-icon-container">
-        <div class="monad-circle">
-            <div class="monad-dot"></div>
-            <div class="monad-orbit">
+    <header>
+        <div class="header-content">
+            <div class="monad-icon-container" id="menu-trigger">
+                <div class="monad-circle">
+                    <div class="monad-dot"></div>
+                </div>
+            </div>
+
+            <div class="site-title">
+                <div class="logo">KOSMOGRAPHICA</div>
+                <p class="tagline">An Atlas of Everything Forever</p>
             </div>
         </div>
-    </div>
-    
-    <header>
-        <h1>KOSMOGRAPHICA</h1>
-        <p>An Atlas of Everything Forever</p>
-
-        <nav>
-            <label for="menu-toggle" class="nav-toggle">Menu</label>
-            <input type="checkbox" id="menu-toggle">
-            <ul>
-                <li><a href="#events">Events</a></li>
-                <li><a href="#projects">Projects</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#contribute">Contribute</a></li>
-                <li><a href="#cite">How to Cite</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
-        </nav>
     </header>
 
-    <section id="events">
-        <h2>Upcoming Events</h2>
+    <div class="subnav" id="subnav">
+        <ul>
+            <li><a href="#events">Events</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#contribute">Contribute</a></li>
+            <li><a href="#cite">How to Cite</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </div>
 
-        <div class="event">
-            <div class="event-content">
-                <h3>Panentheon Symposium</h3>
-                <div class="event-meta">May 17, 18 2025 · 3-6pm Pacific · Balboa Park, San Diego</div>
-                <p>Join us for two evenings exploring the intersection of ancient wisdom and future spiritual practices. Discussions will include the evolution of religious thought, consciousness, and the future of collective cultural enlightenment.</p>
-            </div>
-            <!-- <div class="event-image">
-                <img src="/api/placeholder/300/200" alt="Panentheon Symposium" />
-            </div> -->
-        </div>
+    <div class="nav-drawer" id="nav-drawer">
+        <button class="close-nav" id="close-nav">✕</button>
+        <ul class="drawer-menu">
+            <li><a href="#events">Events</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#contribute">Contribute</a></li>
+            <li><a href="#cite">How to Cite</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </div>
 
-        <div class="event">
-            <div class="event-content">
-                <h3>The Playground: Weekly Philosophical Symposium with Contemplation and Meditation</h3>
-                <div class="event-meta">Every Sunday · 10am Pacific · <a href="googlemeet">CLICK HERE FOR ACCESS<a></a></div>
-                <p>Engage in thought-provoking discussions on fundamental philosophical and spiritual questions, followed by guided contemplation and meditation sessions to foster personal and collective awakening. Explore diverse perspectives and connect with a community of inquisitive minds.</p>
-            </div>
-        </div>
-            <!-- <div class="event-image">
-                <img src="/api/placeholder/300/200" alt="Kosmographica Series Vol. III Launch" />
-            </div> -->
-        </div>
+    <div class="overlay" id="overlay"></div>
 
-    </section>
+    <div class="main-content">
+        <div class="content-wrapper">
+            <section id="events">
+                <h2>Upcoming Events</h2>
 
-    <section id="projects">
-        <h2>Our Projects</h2>
+                <div class="event">
+                    <div class="event-content">
+                        <h3>Panentheon Symposium</h3>
+                        <div class="event-meta">May 17, 18 2025 · 3-6pm Pacific · Balboa Park, San Diego</div>
+                        <p>Join us for two evenings exploring the intersection of ancient wisdom and future spiritual practices. Discussions will include the evolution of religious thought, consciousness, and the future of collective cultural enlightenment.</p>
+                    </div>
+                </div>
 
-        <div class="project">
-            <div class="project-content">
-                <h3 class="project-title"><a href="https://www.panentheon.com">Panentheon.com</a></h3>
-                <p>A comprehensive digital archive and living document exploring the religion(s) of tomorrow. Panentheon examines how spiritual practices evolve in response to technological and cultural transformations, creating a dictionary of emerging concepts, rituals, and philosophical frameworks that bridge ancient wisdom with the present and future.</p>
-                <p><a href="https://www.panentheon.com">View Project</a></p>
-            </div>
-            <!-- <div class="project-image">
-                <img src="/api/placeholder/300/200" alt="Panentheon.com" />
-            </div> -->
-        </div>
+                <div class="event">
+                    <div class="event-content">
+                        <h3>The Playground: Weekly Philosophical Symposium with Contemplation and Meditation</h3>
+                        <div class="event-meta">Every Sunday · 10am Pacific · <a href="googlemeet">CLICK HERE FOR ACCESS</a></div>
+                        <p>Engage in thought-provoking discussions on fundamental philosophical and spiritual questions, followed by guided contemplation and meditation sessions to foster personal and collective awakening. Explore diverse perspectives and connect with a community of inquisitive minds.</p>
+                    </div>
+                </div>
+            </section>
 
-        <div class="project">
-            <div class="project-content">
-                <h3 class="project-title"><a href="#">The Kosmographica Series</a></h3>
-                <p>A multi-volume collection documenting the interconnected nature of time, consciousness, and cultural development throughout human history. Each volume contains meticulously researched timeline indices that map relationships between seemingly disparate historical events, scientific discoveries, artistic movements, and spiritual awakenings.</p>
-                <p><a href="#">Coming Soon</a></p>
-            </div>
-            <!-- <div class="project-image">
-                <img src="/api/placeholder/300/200" alt="The Kosmographica Series" />
-            </div> -->
-        </div>
+            <section id="projects">
+                <h2>Our Projects</h2>
 
+                <div class="project">
+                    <div class="project-content">
+                        <h3 class="project-title"><a href="https://www.panentheon.com">Panentheon.com</a></h3>
+                        <p>A comprehensive digital archive and living document exploring the religion(s) of tomorrow. Panentheon examines how spiritual practices evolve in response to technological and cultural transformations, creating a dictionary of emerging concepts, rituals, and philosophical frameworks that bridge ancient wisdom with the present and future.</p>
+                        <p><a href="https://www.panentheon.com">View Project</a></p>
+                    </div>
+                </div>
 
+                <div class="project">
+                    <div class="project-content">
+                        <h3 class="project-title"><a href="#">The Kosmographica Series</a></h3>
+                        <p>A multi-volume collection documenting the interconnected nature of time, consciousness, and cultural development throughout human history. Each volume contains meticulously researched timeline indices that map relationships between seemingly disparate historical events, scientific discoveries, artistic movements, and spiritual awakenings.</p>
+                        <p><a href="#">Coming Soon</a></p>
+                    </div>
+                </div>
 
-        <div class="project">
-            <div class="project-content">
-                <h3 class="project-title"><a href="#">Synthematicon: Open Symbol Library</a></h3>
-                <p>A comprehensive repository of sacred geometric patterns, symbols, and emblems that have shaped human understanding across civilizations. This collection examines the universal language of sacred geometry as it manifests in religious iconography, cultural motifs, and architectural designs throughout history, revealing the profound interconnectedness of human spiritual expression.</p>
-                <p><a href="#">Coming Soon</a></p>
-            </div>
-            <!-- <div class="project-image">
-                <img src="/api/placeholder/300/200" alt="The Kosmographica Series" />
-            </div> -->
-        </div>
+                <div class="project">
+                    <div class="project-content">
+                        <h3 class="project-title"><a href="#">Synthematicon: Open Symbol Library</a></h3>
+                        <p>A comprehensive repository of sacred geometric patterns, symbols, and emblems that have shaped human understanding across civilizations. This collection examines the universal language of sacred geometry as it manifests in religious iconography, cultural motifs, and architectural designs throughout history, revealing the profound interconnectedness of human spiritual expression.</p>
+                        <p><a href="#">Coming Soon</a></p>
+                    </div>
+                </div>
 
-        <div class="project">
-            <div class="project-content">
-                <h3 class="project-title"><a href="https://holons.world">Holons.World: A Framework for Holonic Community Development (Holoseums)</a></h3>
-                <p>Holons.World documents a comprehensive framework for cultivating holonic communities—living social systems where each individual member functions both as an autonomous whole and as an integrated part of larger collective organisms. Drawing from systems theory, developmental psychology, and enlightened humanist philosophy, Holoseum offers practical models for creating social structures that honor individual sovereignty while fostering profound collective intelligence and shared purpose.</p>
-                <p><a href="#">Original Holoseum Whitepaper</a></p>
-                <p><a href="https://Holons.World">Holons.World Website</a></p>
-            </div>
-            <!-- <div class="project-image">
-                <img src="/api/placeholder/300/200" alt="The Kosmographica Series" />
-            </div> -->
-        </div>
+                <div class="project">
+                    <div class="project-content">
+                        <h3 class="project-title"><a href="https://holons.world">Holons.World: A Framework for Holonic Community Development (Holoseums)</a></h3>
+                        <p>Holons.World documents a comprehensive framework for cultivating holonic communities—living social systems where each individual member functions both as an autonomous whole and as an integrated part of larger collective organisms. Drawing from systems theory, developmental psychology, and enlightened humanist philosophy, Holoseum offers practical models for creating social structures that honor individual sovereignty while fostering profound collective intelligence and shared purpose.</p>
+                        <p><a href="#">Original Holoseum Whitepaper</a></p>
+                        <p><a href="https://Holons.World">Holons.World Website</a></p>
+                    </div>
+                </div>
 
-        <div class="project">
-            <div class="project-content">
-                <h3 class="project-title"><a href="#">One-World Meta-Religion (OM)</a></h3>
-                <p>At its core, the OM recognizes that various religious and wisdom traditions throughout human history have been attempting to describe the same fundamental reality—albeit through different cultural lenses, symbolic languages, and experiential pathways. By mapping these convergent insights while respecting divergent expressions, OM creates a holistic understanding that encompasses both the universal patterns in spiritual experience and the unique contributions of particular traditions.</p>
-                <p><a href="#">Read Whitepaper</a></p>
-            </div>
-            <!-- <div class="project-image">
-                <img src="/api/placeholder/300/200" alt="The Kosmographica Series" />
-            </div> -->
-        </div>
+                <div class="project">
+                    <div class="project-content">
+                        <h3 class="project-title"><a href="#">One-World Meta-Religion (OM)</a></h3>
+                        <p>At its core, the OM recognizes that various religious and wisdom traditions throughout human history have been attempting to describe the same fundamental reality—albeit through different cultural lenses, symbolic languages, and experiential pathways. By mapping these convergent insights while respecting divergent expressions, OM creates a holistic understanding that encompasses both the universal patterns in spiritual experience and the unique contributions of particular traditions.</p>
+                        <p><a href="#">Read Whitepaper</a></p>
+                    </div>
+                </div>
 
-        <div class="project">
-            <div class="project-content">
-                <h3 class="project-title"><a href="#">Synthematicon - Open Symbol Library</a></h3>
-                <p>A comprehensive repository of sacred geometric patterns, symbols, and emblems that have shaped human understanding across civilizations. This collection examines the universal language of sacred geometry as it manifests in religious iconography, cultural motifs, and architectural designs throughout history, revealing the profound interconnectedness of human spiritual expression.</p>
-                <p><a href="#">Coming Soon</a></p>
-            </div>
-            <!-- <div class="project-image">
-                <img src="/api/placeholder/300/200" alt="The Kosmographica Series" />
-            </div> -->
-        </div>
+                <div class="project">
+                    <div class="project-content">
+                        <h3 class="project-title"><a href="#">MoirAI - Timeline AI</a></h3>
+                        <p>An infinitely expanding interactive chronology that utilizes AI to analyze and visualize connections across human knowledge. The model continuously infills from accessible data sources, revealing patterns and relationships previously hidden in the vastness of historical records and cultural artifacts.</p>
+                        <p><a href="#">Coming Soon</a></p>
+                    </div>
+                </div>
 
-        <div class="project">
-            <div class="project-content">
-                <h3 class="project-title"><a href="#">MoirAI - Timeline AI</a></h3>
-                <p>An infinitely expanding interactive chronology that utilizes AI to analyze and visualize connections across human knowledge. The model continuously infills from accessible data sources, revealing patterns and relationships previously hidden in the vastness of historical records and cultural artifacts.</p>
-                <p><a href="#">Coming Soon</a></p>
-            </div>
-<!--             <div class="project-image">
-                <img src="/api/placeholder/300/200" alt="AI Timeline Model" />
-            </div> -->
-        </div>
+                <div class="project">
+                    <div class="project-content">
+                        <h3 class="project-title"><a href="#">The Prophecy Project</a></h3>
+                        <p>A scholarly initiative dedicated to decoding religious mysteries, exploring the origins of prophetic traditions, and recontextualizing historical figures within their complete cultural frameworks. The project employs linguistic analysis, archaeological evidence, and astronomical data to illuminate the truths embedded within ancient texts.</p>
+                        <p><a href="#">Coming Soon</a></p>
+                    </div>
+                </div>
 
-        <div class="project">
-            <div class="project-content">
-                <h3 class="project-title"><a href="#">The Prophecy Project</a></h3>
-                <p>A scholarly initiative dedicated to decoding religious mysteries, exploring the origins of prophetic traditions, and recontextualizing historical figures within their complete cultural frameworks. The project employs linguistic analysis, archaeological evidence, and astronomical data to illuminate the truths embedded within ancient texts.</p>
-                <p><a href="#">Coming Soon</a></p>
-            </div>
-            <!-- <div class="project-image">
-                <img src="/api/placeholder/300/200" alt="The Prophecy Project" />
-            </div> -->
-        </div>
+                <div class="project">
+                    <div class="project-content">
+                        <h3 class="project-title"><a href="https://github.com/FraterCCCLXIII/kechimyaku">Kechimyaku</a></h3>
+                        <p>A comprehensive mapping of Zen lineages, documenting the transmission of wisdom from master to student across centuries. This living digital archive traces the branches of influence throughout the development of Zen Buddhism, preserving the subtle differences in teaching methodologies and philosophical emphases across various schools and traditions.</p>
+                        <p><a href="https://github.com/FraterCCCLXIII/kechimyaku">Access on Github</a></p>
+                    </div>
+                </div>
+            </section>
 
-        <div class="project">
-            <div class="project-content">
-                <h3 class="project-title"><a href="https://github.com/FraterCCCLXIII/kechimyaku">Kechimyaku</a></h3>
-                <p>A comprehensive mapping of Zen lineages, documenting the transmission of wisdom from master to student across centuries. This living digital archive traces the branches of influence throughout the development of Zen Buddhism, preserving the subtle differences in teaching methodologies and philosophical emphases across various schools and traditions.</p>
-                <p><a href="https://github.com/FraterCCCLXIII/kechimyaku">Access on Github</a></p>
-            </div>
-            <!-- <div class="project-image">
-                <img src="/api/placeholder/300/200" alt="Kechimyaku" />
-            </div> -->
-        </div>
-    </section>
+            <section id="about">
+                <h2>About Kosmographica</h2>
 
-    <section id="about">
-        <h2>About Kosmographica</h2>
+                <div class="about-columns">
+                    <div class="about-column">
+                        <h3>Mission</h3>
+                        <p>Kosmographica is dedicated to mapping the interconnected nature of human consciousness as expressed through religion, philosophy, art, and science. We document the threads that connect disparate traditions, time periods, and modes of understanding, revealing the underlying patterns that shape our collective journey.</p>
+                        <p>Through meticulous research, innovative visualization techniques, and interdisciplinary collaboration, we seek to preserve knowledge that might otherwise be lost to time, while simultaneously illuminating new pathways for integrating ancient wisdom with emerging technologies.</p>
+                    </div>
 
-        <div class="about-columns">
-            <div class="about-column">
-                <h3>Mission</h3>
-                <p>Kosmographica is dedicated to mapping the interconnected nature of human consciousness as expressed through religion, philosophy, art, and science. We document the threads that connect disparate traditions, time periods, and modes of understanding, revealing the underlying patterns that shape our collective journey.</p>
-                <p>Through meticulous research, innovative visualization techniques, and interdisciplinary collaboration, we seek to preserve knowledge that might otherwise be lost to time, while simultaneously illuminating new pathways for integrating ancient wisdom with emerging technologies.</p>
-            </div>
+                    <div class="about-column">
+                        <h3>Vision</h3>
+                        <p>We envision a world where humanity's vast cultural heritage is not only preserved but made accessible and meaningful for contemporary seekers. By creating comprehensive maps of knowledge that transcend traditional boundaries, we aim to foster deeper understanding between traditions and generations.</p>
+                        <p>Kosmographica strives to be a beacon for those navigating the complex relationship between technological advancement and spiritual wisdom, offering frameworks for meaningfully integrating our past with our potential futures.</p>
+                    </div>
+                </div>
+            </section>
 
-            <div class="about-column">
-                <h3>Vision</h3>
-                <p>We envision a world where humanity's vast cultural heritage is not only preserved but made accessible and meaningful for contemporary seekers. By creating comprehensive maps of knowledge that transcend traditional boundaries, we aim to foster deeper understanding between traditions and generations.</p>
-                <p>Kosmographica strives to be a beacon for those navigating the complex relationship between technological advancement and spiritual wisdom, offering frameworks for meaningfully integrating our past with our potential futures.</p>
-            </div>
-        </div>
-    </section>
+            <section id="who">
+                <div class="founder">
+                    <div class="founder-content">
+                        <h3>Paul Stuart Bloch</h3>
+                        <p>Paul first conceived of Kosmographica in 2002 and started two decades of research into comparative religion, human history, evolutionary developmental models, and information visualization. His work bridges the gap between traditional academic scholarship, faith-based religious contexts, and emerging technological frameworks for understanding human consciousness and cultural transmission.</p>
+                        <p>Paul has been a lifelong student of religious studies, emerging technologies, design, and systems thinking. Bloch has dedicated his career to design, art, and preserving (and contextualizing) wisdom traditions while exploring how they might evolve in response to technological advancement and social change. His approach combines rigorous historical research with innovative data visualization techniques, creating new pathways for understanding the interconnected nature of human knowledge.</p>
+                        <p>Prior to officially establishing Kosmographica.com in 2025 and Panentheon.com in 2024, Bloch spent ten years studying and documenting Zen lineages throughout East Asia. Paul was ordained as a Zen monk and received his vows at Toshoji Temple in Oda-gun, Japan. Additionally over the past two decades Paul has been developing a methodology for analyzing prophetic literature across religious traditions. His multi-volume Kosmographica Series incorporates his approach and results from temporal mapping cultural and religious interconnections.</p>
+                    </div>
+                </div>
+            </section>
 
-    <section id="who">
-        <div class="founder">
-            <div class="founder-content">
-                <h3>Paul Stuart Bloch</h3>
-                <p>Paul first conceived of Kosmographica in 2002 and started two decades of research into comparative religion, human history, evolutionary developmental models, and information visualization. His work bridges the gap between traditional academic scholarship, faith-based religious contexts, and emerging technological frameworks for understanding human consciousness and cultural transmission.</p>
-                <p>Paul has been a lifelong student of religious studies, emerging technologies, design, and systems thinking. Bloch has dedicated his career to design, art, and preserving (and contextualizing) wisdom traditions while exploring how they might evolve in response to technological advancement and social change. His approach combines rigorous historical research with innovative data visualization techniques, creating new pathways for understanding the interconnected nature of human knowledge.</p>
-                <p>Prior to officially establishing Kosmographica.com in 2025 and Panentheon.com in 2024, Bloch spent ten years studying and documenting Zen lineages throughout East Asia. Paul was ordained as a Zen monk and received his vows at Toshoji Temple in Oda-gun, Japan. Additionally over the past two decades Paul has been developing a methodology for analyzing prophetic literature across religious traditions. His multi-volume Kosmographica Series incorporates his approach and results from temporal mapping cultural and religious interconnections.</p>
-            </div>
-            <!-- <div class="founder-image">
-                <img src="/api/placeholder/300/400" alt="Paul Stuart Bloch" />
-            </div> -->
-        </div>
-    </section>
+            <section id="contribute">
+                <h2>Contribute</h2>
+                <p>We invite all contributions from researchers, scholars, artists, community builders, free-thinkers and technologists committed to preserving and contextualizing human knowledge for the highest good. There are numerous ways to participate in our ongoing work:</p>
 
-    <section id="contribute">
-        <h2>Contribute</h2>
-        <p>We invite all contributions from researchers, scholars, artists, community builders, free-thinkers and technologists committed to preserving and contextualizing human knowledge for the highest good. There are numerous ways to participate in our ongoing work:</p>
+                <h3>Research Contributions</h3>
+                <p>We welcome scholarly research that illuminates connections between traditions, time periods, and modes of understanding. Particularly valuable are studies that identify previously unrecognized relationships between historical events, cultural movements, or philosophical frameworks. Research contributions undergo peer review before integration into our archives.</p>
 
-        <h3>Research Contributions</h3>
-        <p>We welcome scholarly research that illuminates connections between traditions, time periods, and modes of understanding. Particularly valuable are studies that identify previously unrecognized relationships between historical events, cultural movements, or philosophical frameworks. Research contributions undergo peer review before integration into our archives.</p>
+                <h3>Technical Development</h3>
+                <p>Engineers and developers can contribute to our digital infrastructure, particularly our AI Timeline Model and interactive visualization tools. We utilize open-source frameworks and maintain public repositories for collaborative development.</p>
 
-        <h3>Technical Development</h3>
-        <p>Engineers and developers can contribute to our digital infrastructure, particularly our AI Timeline Model and interactive visualization tools. We utilize open-source frameworks and maintain public repositories for collaborative development.</p>
+                <h3>Financial Support</h3>
+                <p>Kosmographica operates as a non-profit religious research community. Financial contributions directly support our archival work, digital preservation efforts, and public educational initiatives.</p>
 
-        <h3>Financial Support</h3>
-        <p>Kosmographica operates as a non-profit religious research community. Financial contributions directly support our archival work, digital preservation efforts, and public educational initiatives.</p>
+                <h3>Volunteer Opportunities</h3>
+                <p>We regularly seek volunteers for all projects, event coordination, and community outreach. Contact us directly to learn about current opportunities and how your specific skills might contribute to our mission.</p>
+            </section>
 
-<!--         <div class="support-links">
-            <a href="#" class="support-link">Donate</a>
-            <a href="#" class="support-link">Patreon</a>
-            <a href="#" class="support-link">Substack</a>
-        </div> -->
+            <section id="cite">
+                <h2>How to Cite</h2>
+                <p>When referencing Kosmographica materials in academic work, please use the following citation formats:</p>
 
-        <h3>Volunteer Opportunities</h3>
-        <p>We regularly seek volunteers for all projects, event coordination, and community outreach. Contact us directly to learn about current opportunities and how your specific skills might contribute to our mission.</p>
-    </section>
-
-    <section id="cite">
-        <h2>How to Cite</h2>
-        <p>When referencing Kosmographica materials in academic work, please use the following citation formats:</p>
-
-        <h3>For the Kosmographica Series:</h3>
-        <div class="citation-example">Bloch, P. S. (2024). The Kosmographica Series. Kosmographica.com.
+                <h3>For the Kosmographica Series:</h3>
+                <div class="citation-example">Bloch, P. S. (2024). The Kosmographica Series. Kosmographica.com.
 
 Chicago: Bloch, Paul Stuart. The Kosmographica Series. Kosmographica.com, 2022-2025.
 
 MLA: Bloch, Paul Stuart. The Kosmographica Series. Kosmographica.com, 2022-2025.</div>
 
-        <h3>For Project Materials:</h3>
-        <div class="citation-example">Kosmographica. (2025). Panentheon: Documentation of Emerging Spiritual Practices. Retrieved from https://panentheon.com
+                <h3>For Project Materials:</h3>
+                <div class="citation-example">Kosmographica. (2025). Panentheon: Documentation of Emerging Spiritual Practices. Retrieved from https://panentheon.com
 
 Chicago: Kosmographica. "Panentheon: Documentation of Emerging Spiritual Practices." Last modified April 15, 2025. https://panentheon.com.
 
 MLA: Kosmographica. "Panentheon: Documentation of Emerging Spiritual Practices." Panentheon, 15 Apr. 2025, panentheon.com.</div>
 
-        <h3>For MoirAI: The AI Timeline Model:</h3>
-        <div class="citation-example">Kosmographica. (2025). MoirAI: AI Timeline [Data visualization]. Retrieved [Month Day, Year], from https://Kosmographica.org/timeline
+                <h3>For MoirAI: The AI Timeline Model:</h3>
+                <div class="citation-example">Kosmographica. (2025). MoirAI: AI Timeline [Data visualization]. Retrieved [Month Day, Year], from https://Kosmographica.org/timeline
 
 Chicago: MoirAI. "AI Timeline Model." 2025. https://Kosmographica.com/moirai.
 
 MLA: MoirAI. "AI Timeline Model." Kosmographica, 2025, Kosmographica.com/moirai.</div>
 
-        <p>For specific questions regarding citation or for permission to reproduce content, please contact our research department at citations@Kosmographica.org.</p>
-    </section>
+                <p>For specific questions regarding citation or for permission to reproduce content, please contact our research department at citations@Kosmographica.org.</p>
+            </section>
 
-    <section id="contact">
-        <h2>Contact Us</h2>
-        <p>We welcome inquiries about our events, research, projects, and opportunities for collaboration. Please use the form below or reach out through any of our communication channels.</p>
+            <section id="contact">
+                <h2>Contact Us</h2>
+                <p>We welcome inquiries about our events, research, projects, and opportunities for collaboration. Please use the form below or reach out through any of our communication channels.</p>
 
-<!--         <form class="contact-form">
-            <input type="text" placeholder="Name" required>
-            <input type="email" placeholder="Email" required>
-            <input type="text" placeholder="Subject">
-            <textarea placeholder="Message" required></textarea>
-            <button type="submit">Send Message</button>
-        </form> -->
+                <p>
+                    <strong>All Inquiries (Press, Research, Contributors, Questions):</strong> contact@Kosmographica.com<br>
+                </p>
+            </section>
 
-        <p>
-            <strong>All Inquiries (Press, Research, Contributors, Questions:</strong>contact@Kosmographica.com<br>
-        </p>
-    </section>
-
-    <footer>
-        <p>© 2025 Kosmographica · All rights reserved</p>
-    </footer>
+            <footer>
+                <p>© 2025 Kosmographica · All rights reserved</p>
+            </footer>
+        </div>
+    </div>
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            // Smooth scrolling for navigation links
-            document.querySelectorAll('nav a').forEach(anchor => {
+            const menuTrigger = document.getElementById('menu-trigger');
+            const navDrawer = document.getElementById('nav-drawer');
+            const closeNav = document.getElementById('close-nav');
+            const overlay = document.getElementById('overlay');
+            const header = document.querySelector('header');
+            const subnav = document.getElementById('subnav');
+            const drawerLinks = document.querySelectorAll('.drawer-menu a');
+            const subnavLinks = document.querySelectorAll('.subnav a');
+
+            // Open navigation drawer
+            menuTrigger.addEventListener('click', function() {
+                navDrawer.classList.add('open');
+                overlay.classList.add('open');
+                document.body.style.overflow = 'hidden'; // Prevent scrolling when drawer is open
+            });
+
+            // Close navigation drawer
+            function closeDrawer() {
+                navDrawer.classList.remove('open');
+                overlay.classList.remove('open');
+                document.body.style.overflow = ''; // Restore scrolling
+            }
+
+            closeNav.addEventListener('click', closeDrawer);
+            overlay.addEventListener('click', closeDrawer);
+
+            // Variables for scroll direction detection
+            let lastScrollTop = 0;
+            let headerHeight = header.offsetHeight;
+
+            // Detect scroll direction and show/hide subnav
+            window.addEventListener('scroll', function() {
+                const st = window.pageYOffset || document.documentElement.scrollTop;
+                const subnavHeight = subnav.offsetHeight;
+
+                // Update header appearance on scroll
+                if (st > 50) {
+                    header.classList.add('scrolled');
+                    headerHeight = header.offsetHeight;
+                } else {
+                    header.classList.remove('scrolled');
+                    headerHeight = header.offsetHeight;
+                }
+
+                // Show/hide subnav with consistent animation in both directions
+                if (st > lastScrollTop && st > headerHeight) {
+                    // Scrolling DOWN - hide subnav
+                    subnav.style.transform = 'translateY(-100%)';
+                    subnav.classList.remove('visible');
+                } else if (st > headerHeight) {
+                    // Scrolling UP - show subnav
+                    subnav.style.top = `${headerHeight}px`;
+                    subnav.style.transform = 'translateY(0)';
+                    subnav.classList.add('visible');
+                } else {
+                    // At the top of page
+                    subnav.style.transform = 'translateY(-100%)';
+                    subnav.classList.remove('visible');
+                }
+
+                lastScrollTop = st <= 0 ? 0 : st; // For mobile or negative scrolling
+            });
+
+            // Smooth scrolling for navigation links - drawer menu
+            drawerLinks.forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href');
+                    const targetSection = document.querySelector(targetId);
+
+                    closeDrawer(); // Close drawer when link is clicked
+
+                    setTimeout(() => {
+                        window.scrollTo({
+                            top: targetSection.offsetTop - 80, // Adjusted for header height
+                            behavior: 'smooth'
+                        });
+                    }, 300); // Small delay to allow drawer to close first
+                });
+            });
+
+            // Smooth scrolling for navigation links - subnav
+            subnavLinks.forEach(anchor => {
                 anchor.addEventListener('click', function(e) {
                     e.preventDefault();
                     const targetId = this.getAttribute('href');
                     const targetSection = document.querySelector(targetId);
 
                     window.scrollTo({
-                        top: targetSection.offsetTop - 40,
+                        top: targetSection.offsetTop - 80, // Adjusted for header height
                         behavior: 'smooth'
                     });
-
-                    // Close mobile menu after click
-                    document.getElementById('menu-toggle').checked = false;
                 });
             });
         });
