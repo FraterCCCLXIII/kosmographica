@@ -305,7 +305,7 @@
     border: 2px solid black;
     border-radius: 50%;
     position: relative;
-    animation: spin-ring 2s linear infinite; /* Changed animation name */
+    animation: spin-ring 2s linear infinite; /* Animation on the circle */
 }
 
 .monad-dot {
@@ -317,20 +317,19 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    z-index: 1; /* Ensure the dot is above potential pseudo-elements */
+    z-index: 2; /* Ensure the dot is on top */
 }
 
-/* Remove the orbit and orbiter elements */
+/* We no longer need the monad-orbit and monad-orbiter */
 
-@keyframes spin-ring { /* New animation for the ring */
+@keyframes spin-ring {
     0% {
         transform: rotateY(0deg);
     }
     100% {
-        transform: rotateY(-360deg); /* Negative for right-to-left */
+        transform: rotateY(-360deg); /* Right-to-left spin */
     }
 }
-    </style>
     </style>
 </head>
 <body>
